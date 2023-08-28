@@ -1,0 +1,129 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 0px auto;
+  width: 400px;
+  align-items: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 0px;
+  margin: 5px;
+  background-color: rgb(202, 230, 255);
+  border-radius: 5px;
+}
+
+input[type='text'] {
+  min-height: 30px;
+  font-size: inherit;
+  width: 0px;
+  width: fit-content;
+  padding: 0px 5px;
+  text-align: right;
+  margin-top: 10px;
+}
+
+input[type='text']:focus {
+  border: 0px solid rgb(202, 230, 255);
+  outline: none;
+}
+
+input[type='button'] {
+  box-sizing: border-box;
+  width: 25%;
+  height: 35px;
+  font-size: inherit;
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 50px;
+}
+
+.loader {
+  width: 60px;
+  height: 60px;
+  /* background-color: aquamarine; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+}
+
+.loaderCircle {
+  width: 60px;
+  height: 60px;
+  transform: rotate(0deg);
+  /* background-color: rgb(74, 199, 157); */
+  border-radius: 100%;
+  border: 5px ridge rgb(74, 199, 157);
+  animation: 4s ease 0s infinite alternate spin;
+  box-sizing: border-box;
+}
+
+@-ms-keyframes spin {
+  from { 
+      -ms-transform: rotate(0deg); 
+  } to { 
+      -ms-transform: rotate(360deg); 
+  }
+}
+@-moz-keyframes spin { 
+  from { 
+      -moz-transform: rotate(0deg); 
+  } to { 
+      -moz-transform: rotate(360deg); 
+  }
+}
+@-webkit-keyframes spin { 
+  from { 
+      -webkit-transform: rotate(0deg); 
+  } to { 
+      -webkit-transform: rotate(360deg);  
+  }
+}
+@keyframes spin { 
+  from { 
+      transform: rotate(0deg); 
+  } to { 
+      transform: rotate(360deg); 
+  }
+}
+
+.divWithAllButtons {
+  background-color: rgb(177, 207, 206);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.divWithAllBasicButtons {
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.divForGroupingAdditionalAndNumbersButtons {
+  flex-grow: 3;
+  display: flex;
+  flex-flow: column wrap;
+}
+.divWithNumbersButtons {
+  padding: 0px 0px;
+}
+
+.divWithKeyControlButtons {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.divWithKeyControlButtons input {
+  margin: 2px auto;
+  width: 90%;
+}

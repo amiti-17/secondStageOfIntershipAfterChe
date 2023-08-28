@@ -1,0 +1,13 @@
+
+.divWithKeyControlButtons {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.divWithKeyControlButtons input {
+  margin: 2px auto;
+  width: 90%;
+}

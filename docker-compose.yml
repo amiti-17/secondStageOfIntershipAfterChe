@@ -1,0 +1,63 @@
+# version: "3.4"
+
+# services:
+#     mymongodb:
+#         image: mongo:latest
+#         ports:
+#             - 27017:27017
+#         volumes:
+#             - data:/data/db
+#     mybackcalc:
+#         build: ./backcalc
+#         ports:
+#             - 8080:8080
+#         command: ["npm", "run", "dev"]
+#         depends_on:
+#             - mymongodb
+#     myfrontcalc:
+#         build: ./frontcalcreact
+#         stdin_open: true
+#         tty: true
+#         ports:
+#             - 3001:3001
+#         depends_on:
+#             - mybackcalc
+# volumes:
+#     data:
+
+version: "3"
+
+services:
+    mongodb:
+        image: mymongodbmycalcexp
+        # restart: always
+        # environment:
+        #     MONGO_INITDB_ROOT_USERNAME: username
+        #     MONGO_INITDB_ROOT_PASSWORD: password
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo_data:/data/db
+
+    backend:
+        # build:
+        #     context: ./backcalc
+        image: mybackcalc
+        container_name: backend
+        # restart: always
+        ports:
+            - "3002:3002"
+        depends_on:
+            - mongodb
+
+    frontend:
+        # build:
+        #     context: ./frontcalcreact
+        image: myfrontcalc
+        container_name: frontend
+        # restart: always
+        ports:
+            - "3000:3000"
+
+volumes:
+    mongo_data:

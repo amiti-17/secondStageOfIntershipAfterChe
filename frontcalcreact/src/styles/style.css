@@ -1,0 +1,27 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  margin: 0px auto;
+  width: 100%;
+  align-items: center;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  border: 0px;
+  margin: 5px;
+  background-color: rgb(202, 230, 255);
+  border-radius: 5px;
+}
+
+.divWithAllButtons {
+  background-color: rgb(177, 207, 206);
+  padding: 5px;
+  border-radius: 5px;
+}
+

@@ -1,0 +1,1 @@
+// export default interface DefaultValueType {[prop: string]: string}

@@ -1,0 +1,6 @@
+.divWithAllBasicButtons {
+  max-width: 200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

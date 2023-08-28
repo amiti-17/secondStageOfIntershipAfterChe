@@ -1,0 +1,14 @@
+.calcInput {
+  min-height: 30px;
+  font-size: inherit;
+  width: 100%;
+  padding: 0px 5px;
+  text-align: right;
+  margin: 10px auto 5px auto;
+  box-sizing: border-box;
+}
+
+.calcInput:focus {
+  border: 0px solid rgb(202, 230, 255);
+  outline: none;
+}

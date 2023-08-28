@@ -1,0 +1,10 @@
+
+.buttons {
+  box-sizing: border-box;
+  width: 25%;
+  height: 35px;
+  font-size: inherit;
+  min-width: 30px;
+  min-height: 30px;
+  max-width: 50px;
+}

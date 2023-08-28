@@ -1,0 +1,26 @@
+.expression {
+  text-align: right;
+  font-size: large;
+  margin-top: 10px;
+  background-color: rgb(220, 252, 241);
+  /* width: fit-content; */
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.calcExp {
+  text-align: right;
+  font-size: small;
+  margin-bottom: 10px;
+  background-color: rgb(210, 236, 227);
+  /* width: fit-content; */
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 5px;
+}
+
+.expSpan {
+  background-color: rgb(220, 252, 241);
+  border-radius: 5px;
+}

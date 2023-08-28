@@ -1,0 +1,24 @@
+.controlElementsSpan {
+  min-width: 100px;
+  margin: auto;
+  display: flex;
+}
+
+.controlElementsSpan button {
+  display: inline-block;
+  width: 50%;
+  margin: auto;
+  background-color: rgb(177, 207, 206);
+}
+
+.controlElementsSpan button:first-child {
+  border-top-right-radius: 100%;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.controlElementsSpan button:last-child {
+  border-top-left-radius: 100%;
+  padding-left: 15px;
+  box-sizing: border-box;
+}

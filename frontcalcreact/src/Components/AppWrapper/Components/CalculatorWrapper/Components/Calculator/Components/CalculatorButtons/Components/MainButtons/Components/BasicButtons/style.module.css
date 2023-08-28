@@ -1,0 +1,6 @@
+
+.divForGroupingAdditionalAndNumbersButtons {
+  flex-grow: 3;
+  display: flex;
+  flex-flow: column wrap;
+}

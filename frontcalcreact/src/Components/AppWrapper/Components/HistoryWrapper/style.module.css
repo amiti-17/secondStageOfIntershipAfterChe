@@ -1,0 +1,12 @@
+.historyWrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  min-width: 200px;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.historyWrapper ul {
+  list-style: none;
+}
+
