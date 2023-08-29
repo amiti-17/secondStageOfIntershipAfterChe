@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express, { NextFunction, Request, Response } from "express";
 import path from "path";
 import calcRoutes from "./router/calcRoutes.js";
@@ -19,13 +20,16 @@ import chooseDbAPI from "./database/chooseDbAPI.js";
 import configDB from "./configDB/index.js";
 import dbAPI from "./database/dbAPI.js";
 
-chooseDbAPI(configDB.mongo);
+chooseDbAPI(configDB.mode);
 
 async function test() {
-    const resp2 = await dbAPI.dataBase.listAll()
-    // const resp1 = await myPostgresDb.findOne({expression: "2+2"});
-    // const resp3 = await dbAPI.dataBase.create({expression: "42-10", calculated: "32"});
-    console.log(resp2.length, resp2.map(el => el._id));
+    // const resp2 = await dbAPI.dataBase.listAll();
+    // const resp = await dbAPI.rawDataBase.pool?.query("ALTER TABLE mycalcexp ALTER COLUMN _id TYPE INT;");
+    // const resp1 = await dbAPI.rawDataBase.pool?.query("UPDATE mycalcexp SET calculated=calcexp WHERE calcexp IS NOT NULL");
+    // const resp2 = await dbAPI.dataBase.list(0, 3);
+    // const resp3 = await dbAPI.rawDataBase.deleteOne({expression: "cos(2(1+(2*6)-3))"});
+    // console.log("2", resp2);
+    // console.log("0", resp)
     // console.log("1", resp1)
     // console.log("3", resp3)
 }

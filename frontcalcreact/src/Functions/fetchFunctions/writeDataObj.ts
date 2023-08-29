@@ -20,7 +20,7 @@ export default function writeDataObj(
 ) {
   
     
-  // console.log(Object.keys(localData));
+  console.log(Object.keys(localData));
   try {
     Object.keys(fetchedData).forEach((el: any) => {
       // console.log(el, typeof el);

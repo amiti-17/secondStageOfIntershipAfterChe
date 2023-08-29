@@ -1,27 +1,13 @@
 import CustomError from "../../configCommon/Errors";
 import errorMsg from "../../configCommon/Errors/errorMsg";
-import DataBaseType from "../Types/DateBaseType";
 import HistoryType from "../Types/HistoryType";
-import CalcModel from "./model/mongoModel";
-import PaginationAnswerType from "../PaginationAnswerType";
 import DeletedType from "./DeletedType";
 import mongoose from "mongoose";
 import calcSchema from "./schema/mongoSchema";
+import RawDateBaseType from "../Types/RawDateBaseType";
 
-class MongoDb {
-  CalcModel: mongoose.Model<{
-    expression?: string | undefined;
-    calculated?: string | undefined;
-    _id?: number | undefined;
-}, {}, {}, {}, mongoose.Document<unknown, {}, {
-    expression?: string | undefined;
-    calculated?: string | undefined;
-    _id?: number | undefined;
-}> & {
-    expression?: string | undefined;
-    calculated?: string | undefined;
-    _id?: number | undefined;
-}>
+class MongoDb implements RawDateBaseType {
+  CalcModel: mongoose.Model<HistoryType>
   constructor(db: typeof mongoose) {
     const CalcModel = db.model("calc", calcSchema);
     this.CalcModel = CalcModel;
@@ -79,27 +65,31 @@ class MongoDb {
     return myHistory;
   };
 
-  list = async (offset: number, limit: number): Promise<PaginationAnswerType> => {
+  list = async (offset: number, limit: number): Promise<HistoryType[]> => {
     console.log(offset, limit);
 
-    if (!isNaN(offset) && ! isNaN(limit) && limit) {
+    if (!isNaN(offset) && !isNaN(limit) && limit) {
 
       try {
-        return {
-          history: await this.CalcModel.find().skip(await this.CalcModel.count() - offset - limit).limit(limit),
-          length: await this.CalcModel.count(),
-        }
-         
+        // const result1 = (await this.CalcModel.find().skip(await this.CalcModel.count() - offset - limit).limit(limit)).reverse();
+        const result2 = await this.CalcModel.find().sort({'_id': -1 }).skip(offset).limit(limit);
+        // console.log("1, ", result1);
+        // console.log("2, ", result2);
+        return result2
       } catch(e) {
         console.error(`${e}. ` + errorMsg.database);
         throw new CustomError(`${e}. ` + errorMsg.database);
       };
 
     } else {
-      console.error(`${errorMsg.database}. list() in mongoDB`);
-      throw new CustomError(errorMsg.database + ", incorrect offset or limit");
+      return await this.listAll();
+      // console.error(`${errorMsg.database}. list() in mongoDB`);
+      // throw new CustomError(errorMsg.database + ", incorrect offset or limit");
     }
     // return myHistory;
+  };
+  countAll = async (): Promise<number> => {
+    return await this.CalcModel.count()
   };
 }
 

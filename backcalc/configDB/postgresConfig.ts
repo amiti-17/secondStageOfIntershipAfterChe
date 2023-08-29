@@ -1,9 +1,9 @@
 const postgresConfig = {
-  host: "localhost",
-  port: 5432,
-  user: "user",
-  password: "password",
-  database: "mycalcexp",
+  host: process.env.POSTGRES_HOST,
+  port: Number(process.env.POSTGRES_PORT),
+  user: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PWD,
+  database: process.env.DB,
 };
 
 export default postgresConfig;

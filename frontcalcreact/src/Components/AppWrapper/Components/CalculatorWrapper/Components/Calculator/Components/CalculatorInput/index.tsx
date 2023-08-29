@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect, useLayoutEffect } from "react";
 import keyBoardEvent from "@/Events/keyBoardEvent";
 import workWithFocus from "./workWithInput/workWithFocus";
 import style from "./style.module.css";
@@ -13,6 +13,10 @@ export default function CalculatorInput() {
     inputValue, setInputValue,
     inputPosition, setInputPosition
   } = useContext(CalcContext);
+
+  // useEffect(() => {
+  //   console.log(inputValue)
+  // }, [inputValue])
 
   useLayoutEffect(() => {
     workWithFocus(inputPosition, setInputPosition);

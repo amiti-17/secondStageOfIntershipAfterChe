@@ -1,4 +1,4 @@
-import HistoryType from "./Types/HistoryType";
+import HistoryType from "./HistoryType";
 
 export default interface PaginationAnswerType {
   history: HistoryType[],

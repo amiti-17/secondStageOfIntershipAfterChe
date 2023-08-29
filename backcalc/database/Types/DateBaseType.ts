@@ -1,8 +1,8 @@
-import PaginationAnswerType from "../PaginationAnswerType";
+import PaginationAnswerType from "./PaginationAnswerType";
 import HistoryType from "./HistoryType";
 import DeletedType from "../mongoDb/DeletedType";
 
-export default interface DataBaseType {
+export default interface DateBaseType {
     create: (data: HistoryType) => Promise<HistoryType>;
     findOne: (fieldToSearch: {[prop: string]: string}) => Promise<HistoryType | null>;
     listAll: () => Promise<HistoryType[]>;

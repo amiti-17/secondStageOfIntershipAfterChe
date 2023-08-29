@@ -6,7 +6,7 @@ export default function ListItem({currentData}:{currentData: StorageType}) {
   return (
     <li className={style.expSpan}>
       <div className={style.expression} >{currentData.expression}</div>
-      <div className={style.calcExp} >{currentData.calcExp}</div>
+      <div className={style.calculated} >{currentData.calculated}</div>
     </li>
   )
 }

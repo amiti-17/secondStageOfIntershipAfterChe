@@ -10,8 +10,6 @@ export default async function fetchHistory(
   limit: number,
 ): Promise<FetchedHistoryType> {
 
-  let response;
-
   const currentUrl = generalUrls.baseUrl + generalUrls.backSlash + generalUrls.historyUrl + generalUrls.questionStr + 
     generalUrls.offset + generalUrls.equalStr + String(offset) + generalUrls.logicalAndStr +
     generalUrls.limit + generalUrls.equalStr + String(limit);

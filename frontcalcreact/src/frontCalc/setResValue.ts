@@ -2,7 +2,7 @@ import ResDataType from "./ResDataType";
 
 export default function setResValue(resValue: ResDataType) {
   console.warn(resValue);
-  if (resValue.calc === undefined) {
+  if (resValue.calculated === undefined) {
     // Observable.notifyAll(values.output, numbers.zero.str);
     return;
   } 

@@ -22,7 +22,7 @@ export default async function calculate({inputValue, setInputValue, setInputPosi
   if (isInputChecked) calculatedData = await fetchData(reqBody);
 
   console.warn(calculatedData);
-  if (calculatedData.calc === undefined) {
+  if (calculatedData.result === undefined) {
     setInputValue(numbers.zero.str);
     return;
   }

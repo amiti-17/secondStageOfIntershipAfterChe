@@ -1,15 +1,18 @@
-import DataBaseType from "./Types/DateBaseType";
+import DateBaseType from "./Types/DateBaseType";
+import RawDateBaseType from "./Types/RawDateBaseType";
 import chooseDbAPI from "./chooseDbAPI";
 import defaultDBObj from "./defaultDb/defaultDBObj";
 
 
 interface dbAPIType {
-  dataBase: DataBaseType,
+  dataBase: DateBaseType,
+  rawDataBase: RawDateBaseType,
   // chooseDbAPI: () => {},
 }
 
 const dbAPI: dbAPIType = {
   dataBase: defaultDBObj,
+  rawDataBase: {} as RawDateBaseType,
   // chooseDbAPI: chooseDbAPI,
 };
 

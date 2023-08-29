@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import style from "./style.module.css";
 import HistoryContext from "@/Context/HistoryContext";
 import GeneralContext from "@/Context";
-import updateHistoryValue from "../updateHistoryValue";
+import updateHistoryValue from "../../updateHistoryValue";
 import fixConfig from "./fixConfig";
 import initialHistoryConfig from "@/config/public/initialHistoryConfig";
 import checkButtonDisappear from "./checkButtonDisappear";

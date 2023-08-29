@@ -3,7 +3,7 @@ import style from "./style.module.css";
 import HistoryContext from "@/Context/HistoryContext";
 import ListItem from "./Components/ListItem";
 import GeneralContext from "@/Context";
-import ControlElements from "./ConrtolElements";
+import ControlElements from "./Components/ConrtolElements";
 import useCalcHistory from "@/Hooks/useCalcHistory";
 import initialHistoryConfig from "@/config/public/initialHistoryConfig";
 import updateHistoryValue from "./updateHistoryValue";

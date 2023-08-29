@@ -1,5 +1,5 @@
 export default interface StorageType {
-    expression?: string | undefined; 
-    calcExp?: string | undefined;
-    _id?: any;
+    expression: string; 
+    calculated: string;
+    _id: number;
 }

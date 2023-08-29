@@ -1,19 +1,19 @@
 class MongoConfigClass {
     url: string;
-    user: string;
-    pwd: string;
-    port: number;
+    // user: string;
+    // pwd: string;
+    // port: number;
     slash: string;
-    dbName: string;
+    // dbName: string;
     uri: string;
     connect: boolean;
 
     constructor() {
         this.url = "mongodb://localhost:";
-        this.user = "username";
-        this.pwd = "password";
-        this.dbName = "mycalcexp";
-        this.port = 27017;
+        // this.user = "username";
+        // this.pwd = "password";
+        // this.dbName = "mycalcexp";
+        // this.port = 27017;
         this.slash = "/";
         this.uri = this.getUri();
         this.connect = false;
@@ -21,7 +21,7 @@ class MongoConfigClass {
 
     getUri() {
         const myUri: string =
-            this.url + String(this.port) + this.slash + this.dbName;
+            this.url + String(process.env.MONGO_PORT) + this.slash + process.env.DB;
         return myUri;
     }
 }

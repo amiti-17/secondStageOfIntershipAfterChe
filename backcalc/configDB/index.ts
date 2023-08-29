@@ -2,7 +2,7 @@
 const configDB = {
   mongo: "mongo",
   postgres: "postgres",
-  mode: "mongo",
+  mode: "postgres",
 }
 
 export default configDB;

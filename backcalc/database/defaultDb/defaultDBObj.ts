@@ -1,5 +1,5 @@
 import DataBaseType from "../Types/DateBaseType";
-import ListType from "../PaginationAnswerType";
+import ListType from "../Types/PaginationAnswerType";
 import HistoryType from "../Types/HistoryType";
 import DeletedType from "../mongoDb/DeletedType";
 
