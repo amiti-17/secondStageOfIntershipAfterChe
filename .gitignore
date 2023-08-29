@@ -2,3 +2,5 @@ node_modules
 dist
 configCommon - Old
 public
+.env
+.env.test
