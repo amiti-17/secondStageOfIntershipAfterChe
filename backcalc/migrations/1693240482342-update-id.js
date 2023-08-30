@@ -15,7 +15,7 @@ module.exports.up = async function (next) {
         calculated: String,
         _id: Number,
       };
-      const CalcModel = mongoose.model("calc", new Schema(schemaObj));
+      const CalcModel = mongoose.model("calc", new mongoose.Schema(schemaObj));
       return CalcModel.updateMany({expression: /.*/}, {_id: new Date().getTime()}).save();
     }).then(result => {
       console.log(result);
