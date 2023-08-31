@@ -10,23 +10,23 @@ async function calculateWithDb(exp: string) {
   try {
 
     // if this calculation exists
-    const storedData = await dbAPI.dataBase.findOne({expression: exp});
+    let resultObj = await dbAPI.dataBase.findOne({expression: exp});
 
-    if (storedData) {
+    if (resultObj) {
         console.log(
             "Data was not calculated - it has been taken from database",
-            storedData
+            resultObj
         );
-        return storedData.calculated;
+        delete resultObj._id;
+        delete resultObj.created_at;
+    } else {
+      resultObj = {
+        expression: exp,
+        calculated: calculate(exp),
+      }
     }
 
-    // if don`t
-    result = calculate(exp);
-
-    return (await dbAPI.dataBase.create({
-        expression: exp,
-        calculated: result,
-    })).calculated;
+    return (await dbAPI.dataBase.create(resultObj)).calculated;
 
   } catch (error) {
     console.error("some went wrong with db. " + (error instanceof Error ? error.message : ""));

@@ -13,11 +13,12 @@ module.exports = {
   },
 
   staging: {
-    client: 'postgresql',
+    client: 'pg',
     connection: {
-      database: process.env.DB, // 'mycalcexp',
-      user:     process.env.POSTGRES_USER, // 'username',
-      password: process.env.POSTGRES_PWD // 'password'
+      host:     "localhost", // process.env.POSTGRES_HOST,
+      database: 'mycalcexp', // process.env.DB,
+      user:     'user', // process.env.POSTGRES_USER,
+      password: 'password' // process.env.POSTGRES_PWD
     },
     pool: {
       min: 2,

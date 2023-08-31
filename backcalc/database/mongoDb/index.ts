@@ -1,7 +1,7 @@
 import CustomError from "../../configCommon/Errors";
 import errorMsg from "../../configCommon/Errors/errorMsg";
 import HistoryType from "../Types/HistoryType";
-import DeletedType from "./DeletedType";
+import DeletedType from "../Types/DeletedType";
 import mongoose from "mongoose";
 import calcSchema from "./schema/mongoSchema";
 import RawDateBaseType from "../Types/RawDateBaseType";
@@ -10,10 +10,9 @@ class MongoDb implements RawDateBaseType {
   CalcModel: mongoose.Model<HistoryType>
   constructor(db: typeof mongoose) {
     const CalcModel = db.model("calc", calcSchema);
-    this.CalcModel = CalcModel;
+    this.CalcModel = CalcModel as unknown as mongoose.Model<HistoryType>; // Problem in types...
   };
   create = async (data: HistoryType): Promise<HistoryType> => {
-    data._id = new Date().getTime();
     const newData = new this.CalcModel(data);
     const savedValue = await newData.save(); // how I can spot that some going wrong?
 
@@ -22,25 +21,25 @@ class MongoDb implements RawDateBaseType {
     return savedValue;
   };
 
-  findOne = async (fieldToSearch: {[prop: string]: string}): Promise<HistoryType | null> => {
+  findOne = async (filter: {[prop: string]: string}): Promise<HistoryType | null> => {
 
     let myObjData: HistoryType | null;
 
     try {
-      myObjData = await this.CalcModel.findOne(fieldToSearch);
+      myObjData = await this.CalcModel.findOne(filter);
     } catch(e) {
       throw new CustomError(`${e}. ` + errorMsg.database);
     };
 
-    console.log(`db: Data was read by field: ${Object.keys(fieldToSearch).join(", ")}, and it's value: ${myObjData}`);
+    console.log(`db: Data was read by field: ${Object.keys(filter).join(", ")}, and it's value: ${myObjData}`);
 
     return myObjData;
   };
 
-  deleteOne = async (fieldToDelete: {[prop: string]: string}): Promise<HistoryType | null> => {
-    const myDeletedObj =  await this.findOne(fieldToDelete);
-    const deletedReportObj = await this.CalcModel.deleteOne(fieldToDelete);
-    console.log(`db: Data was delete by field: ${Object.keys(fieldToDelete).map(el => [el, fieldToDelete[el]]).join(", ")}, and it's: ${myDeletedObj?.expression}: ${myDeletedObj?.calculated} `);
+  delete = async (filter: {[prop: string]: string}): Promise<HistoryType | null> => {
+    const myDeletedObj =  await this.findOne(filter);
+    const deletedReportObj = await this.CalcModel.deleteOne(filter);
+    console.log(`db: Data was delete by field: ${Object.keys(filter).map(el => [el, filter[el]]).join(", ")}, and it's: ${myDeletedObj?.expression}: ${myDeletedObj?.calculated} `);
     return deletedReportObj.deletedCount ? myDeletedObj : null;
   };
   
@@ -60,7 +59,7 @@ class MongoDb implements RawDateBaseType {
       throw new CustomError(`${e}. ` + errorMsg.database);
     };
 
-    console.log(`db: All data was read: ${myHistory}`);
+    console.log(`mongoDb: All data was read: ${myHistory}`);
     
     return myHistory;
   };

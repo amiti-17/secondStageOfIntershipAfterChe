@@ -13,7 +13,6 @@
   "author": "Tymofii <timjobit@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@types/knex": "^0.16.1",
     "@types/mongoose": "^5.11.97",
     "bluebird": "^3.7.2",
     "body-parser": "^1.20.2",

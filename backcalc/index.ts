@@ -23,15 +23,20 @@ import dbAPI from "./database/dbAPI.js";
 chooseDbAPI(configDB.mode);
 
 async function test() {
-    // const resp2 = await dbAPI.dataBase.listAll();
-    // const resp = await dbAPI.rawDataBase.pool?.query("ALTER TABLE mycalcexp ALTER COLUMN _id TYPE INT;");
+//   if (dbAPI.rawDataBase.knex) {
+//     const knex = dbAPI.rawDataBase.knex;
+//     const resp = await knex.schema.alterTable("mycalcexp.mycalcexp", table => {
+//         table.dropUnique(["calculated"]);
+//     })
+//     console.log("0", resp);
+//   }
+    
     // const resp1 = await dbAPI.rawDataBase.pool?.query("UPDATE mycalcexp SET calculated=calcexp WHERE calcexp IS NOT NULL");
-    // const resp2 = await dbAPI.dataBase.list(0, 3);
-    // const resp3 = await dbAPI.rawDataBase.deleteOne({expression: "cos(2(1+(2*6)-3))"});
+    // const resp3 = await dbAPI.rawDataBase.create({expression: "9+9", calculated: "18"});
+    // const resp2 = await dbAPI.dataBase.listAll();
     // console.log("2", resp2);
-    // console.log("0", resp)
-    // console.log("1", resp1)
-    // console.log("3", resp3)
+    // console.log("1", resp1);
+    // console.log("3", resp3);
 }
     setTimeout(() => test(), 1000)
 

@@ -31,9 +31,11 @@ export default function HistoryWrapper() {
   }, []);
 
   useEffect(() => {
-    // updateHistoryValue(setErrorMessage, calcHistory, setCalcHistory, initialHistoryConfig);
-    setHistoryControlButtonsState(initialHistoryConfig);
-    setShouldUpdateHistory(false);
+    if (shouldUpdateHistory) {
+      updateHistoryValue(setErrorMessage, calcHistory, setCalcHistory, initialHistoryConfig);
+      setHistoryControlButtonsState(initialHistoryConfig);
+      setShouldUpdateHistory(false);
+    }
   }, [shouldUpdateHistory]);
  
   // async function updateHistory(action: string, ) 

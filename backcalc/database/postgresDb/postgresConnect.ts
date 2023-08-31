@@ -13,12 +13,23 @@ async function postgresConnect(): Promise<Knex<HistoryType, unknown[]> | undefin
     const myKnex = knex<HistoryType>({
       client: 'pg',
       connection: {
-        host : process.env.POSTGRES_HOST,
-        port : Number(process.env.POSTGRES_PORT),
-        user : process.env.POSTGRES_USER,
-        password : process.env.POSTGRES_PWD,
-        database : process.env.DB,
+        host: process.env.POSTGRES_HOST,
+        database: process.env.DB, // 'mycalcexp',
+        user:     process.env.POSTGRES_USER, // 'username',
+        password: process.env.POSTGRES_PWD // 'password'
+      },
+      pool: {
+        min: 2,
+        max: 10
       }
+      // client: 'pg',
+      // connection: {
+      //   host : process.env.POSTGRES_HOST,
+      //   port : Number(process.env.POSTGRES_PORT),
+      //   user : process.env.POSTGRES_USER,
+      //   password : process.env.POSTGRES_PWD,
+      //   // database : process.env.DB,
+      // }
     }) 
     
     return myKnex;

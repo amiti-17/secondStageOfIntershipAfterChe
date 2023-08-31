@@ -1,7 +1,7 @@
 import DataBaseType from "../Types/DateBaseType";
 import ListType from "../Types/PaginationAnswerType";
 import HistoryType from "../Types/HistoryType";
-import DeletedType from "../mongoDb/DeletedType";
+import DeletedType from "../Types/DeletedType";
 
 const defaultDBObj: DataBaseType = {
   create: function (data: HistoryType): Promise<HistoryType> {
@@ -16,7 +16,7 @@ const defaultDBObj: DataBaseType = {
   list: function (offset: number, limit: number): Promise<ListType> {
     throw new Error("Function not implemented.");
   },
-  deleteOne: function (fieldToDelete: { [prop: string]: string; }): Promise<HistoryType | null> {
+  delete: function (fieldToDelete: { [prop: string]: string; }): Promise<HistoryType | null> {
     throw new Error("Function not implemented.");
   },
   deleteAll: function (): Promise<DeletedType | null> {

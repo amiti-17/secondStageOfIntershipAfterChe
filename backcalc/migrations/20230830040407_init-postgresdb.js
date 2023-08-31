@@ -3,8 +3,8 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-
-  knex.schema.hasTable("mycalcexp")
+  return knex.schema
+    .hasTable("mycalcexp")
     .then(exists => {
       if (!exists) {
         return knex.schema
@@ -15,8 +15,6 @@ exports.up = function(knex) {
           });
       }
     });
-  
-
   // move the following into another migration file: (but I am not sure that I need it...)
   // return knex.schema
   //   .alterTable('mycalcexp', function (table) {
