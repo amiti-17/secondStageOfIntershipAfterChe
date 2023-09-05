@@ -6,7 +6,7 @@ import clearAllLetters from "../workWithInput/clearAllLetters";
 import CustomError from "../../configCommon/Errors";
 import errorMsg from "../../configCommon/Errors/errorMsg";
 
-function parseElExp(exp: string) {
+function parseElementaryExp(exp: string) {
   const priorSignArr = simplestOperand;
   let currentExpression = clearAllLetters(exp);
   currentExpression = formatElExp(currentExpression);
@@ -28,8 +28,7 @@ function parseElExp(exp: string) {
       currentExpression = currentExpression.replace(currentMatchRegExp, String(replacement));
     }
   }
-
   return currentExpression;
 }
 
-export default parseElExp;
+export default parseElementaryExp;

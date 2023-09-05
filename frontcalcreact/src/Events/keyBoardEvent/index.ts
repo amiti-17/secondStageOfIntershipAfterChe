@@ -4,11 +4,12 @@ import regExp from "../../config/system/regExp";
 
 export default function keyBoardEvent(
   e: React.KeyboardEvent<HTMLInputElement>, 
-  { inputValue, setInputValue, setInputPosition, setShouldUpdateHistory }: {
+  { inputValue, setInputValue, setInputPosition, setShouldUpdateHistory, setErrorMessage }: {
     inputValue: string, 
     setInputValue: React.Dispatch<React.SetStateAction<string>>, 
     setInputPosition: React.Dispatch<React.SetStateAction<number>>,
     setShouldUpdateHistory: React.Dispatch<React.SetStateAction<boolean>>,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
   }
 ) {
   
@@ -19,7 +20,7 @@ export default function keyBoardEvent(
   switch (e.key) {
     case calcControlFunc.equal.keyOnKeyboard:
       e.preventDefault();
-      myInput.calculate({ inputValue, setInputValue, setInputPosition, setShouldUpdateHistory });
+      myInput.calculate({ inputValue, setInputValue, setInputPosition, setShouldUpdateHistory, setErrorMessage });
       break;
     case calcControlFunc.clearAll.keyOnKeyboard:
       e.preventDefault();

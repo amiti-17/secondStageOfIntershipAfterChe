@@ -1,4 +1,4 @@
-import ResDataType from "./ResDataType";
+import ResDataType from "../config/Types/ResDataType";
 
 export default function setResValue(resValue: ResDataType) {
   console.warn(resValue);

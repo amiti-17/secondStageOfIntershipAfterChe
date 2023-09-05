@@ -13,7 +13,10 @@ export default function Button(
     key: number,
   }) {
 
-  const { shouldUpdateHistory, setShouldUpdateHistory } = useContext(GeneralContext);
+  const { 
+    shouldUpdateHistory, setShouldUpdateHistory,
+    setErrorMessage
+   } = useContext(GeneralContext);
     
   const { 
     inputValue, setInputValue, 
@@ -28,7 +31,12 @@ export default function Button(
     <input 
       type="button" 
       defaultValue={displayValue} 
-      onClick={(e) => mouseEvent(e, {inputValue, setInputValue, setInputPosition, setShouldUpdateHistory})}
+      onClick={(e) => mouseEvent(e, {
+        inputValue, setInputValue, 
+        setInputPosition, 
+        setShouldUpdateHistory,
+        setErrorMessage
+      })}
       className={style.buttons}
     />
   )

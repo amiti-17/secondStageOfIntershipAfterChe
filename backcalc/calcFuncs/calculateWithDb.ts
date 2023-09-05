@@ -4,29 +4,31 @@ import dbAPI from "../database/dbAPI";
 import calculate from "./calculate";
 
 
-async function calculateWithDb(exp: string) {
+async function calculateWithDb(exp: string): Promise<string> {
   let result;
 
   try {
 
     // if this calculation exists
-    let resultObj = await dbAPI.dataBase.findOne({expression: exp});
+    const resultObj = await dbAPI.dataBase.findOne({expression: exp});
 
     if (resultObj) {
-        console.log(
-            "Data was not calculated - it has been taken from database",
-            resultObj
-        );
-        delete resultObj._id;
-        delete resultObj.created_at;
+      console.log(
+        "Data was not calculated - it has been taken from database",
+        resultObj
+      );
+      result = {
+        expression: resultObj.expression,
+        calculated: resultObj.calculated
+      }
     } else {
-      resultObj = {
+      result = {
         expression: exp,
         calculated: calculate(exp),
       }
     }
 
-    return (await dbAPI.dataBase.create(resultObj)).calculated;
+    return (await dbAPI.dataBase.create(result)).calculated || "";
 
   } catch (error) {
     console.error("some went wrong with db. " + (error instanceof Error ? error.message : ""));

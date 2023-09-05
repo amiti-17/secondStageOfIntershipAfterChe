@@ -9,21 +9,22 @@ const schemaObj = {
   _id: { type: mongoose.Schema.Types.ObjectId, required: true },
 };
 
-module.exports.up = function (next) {
-
+module.exports.up = async function (next) {
   mongoose.connect(url,  {
     user: "username",
     pass: "password",
   }).then(db => {
     return db.model("calc", new mongoose.Schema(schemaObj));
-  });
-  // .then(Model => {
-  //   if (!Model.findOne()) {
+  }).then(Model => {
+    return {data: Model.find(), Model: Model}
+  }).then(({data, Model}) => {
+    data.forEach(el => {
+      el._id = new mongoose.Types.ObjectId()
+      (new Model(el)).save()
+    })
+  })
 
-  //   }
-  // })
-
-  next();
+  next()
 }
 
 module.exports.down = function (next) {

@@ -19,8 +19,7 @@ const calcHistoryController = {
 
   list: async function (req: Request, res: Response) {
     // dbAPI.chooseBdAPI();
-    console.log("query: ", req.query);
-      console.log("hear", dbAPI.dataBase.listAll())
+    // console.log("query: ", req.query);
     try {
       const myHistory = await dbAPI.dataBase.list(Number(req.query.offset), Number(req.query.limit));
       console.log(myHistory)

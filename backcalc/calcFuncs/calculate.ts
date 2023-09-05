@@ -1,24 +1,33 @@
 import constants from "../configCommon/system/constants/";
 import numbers from "../configCommon/system/constants/numbers";
-import formatElExp from "./workWithInput";
-import parseToSubExp from "./parsers/parseToSub";
+import formatExp from "./workWithInput";
+import parseToSubExp from "./parsers/parseToSubExp";
+import CustomError from "../configCommon/Errors";
+import errorMsg from "../configCommon/Errors/errorMsg";
 
 export default function calculate(expression: string) {
-    if (expression === constants.emptyStr.str) {
-        return numbers.zero.str;
+  if (expression === constants.emptyStr.str) {
+    return numbers.zero.str;
+  }
+  const formattedInputExp = formatExp(expression);
+  const calculatedExp = parseToSubExp(formattedInputExp);
+  if (expression === constants.emptyStr.str) {
+    return constants.invalidFormat.str;
+  }
+  console.log(calculatedExp);
+  try {
+    const returnedValue = String(Number(calculatedExp));
+      console.error("divine by zero...", returnedValue, constants.infinity.str)
+    if (returnedValue === constants.infinity.str) {
+      throw new CustomError(errorMsg.returnedValueIsNotNumber);
     }
-
-    const formattedInputExp = formatElExp(expression);
-
-    const calculatedExp = parseToSubExp(formattedInputExp);
-
-    if (expression === constants.emptyStr.str) {
-        return constants.invalidFormat.str;
+    return returnedValue;
+  } catch (error) {
+    if (error instanceof Error || error instanceof CustomError) {
+      throw new CustomError(errorMsg.returnedValueIsNotNumber);
     }
-
-    console.log(calculatedExp);
-
-    return calculatedExp;
+  }
+  return calculatedExp;
 }
 
 // function getTwoOperandsAndCharObj(regExpObj) {

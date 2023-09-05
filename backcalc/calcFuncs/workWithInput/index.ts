@@ -9,7 +9,7 @@ import constants from "../../configCommon/system/constants";
 import numbers from "../../configCommon/system/constants/numbers";
 import ValidationError from "../../configCommon/Errors/ValidationError";
 
-function formatElExp(exp: string) {
+function formatExp(exp: string) {
   let result = exp.replace(new RegExp(regExpStr.allEmptySymbol, flags.global), constants.emptyStr.str);
   result = result.replace(constants.doubleMinus.str, constants.plus.str);
   result = removeDuplicateOperands(result);
@@ -26,4 +26,4 @@ function formatElExp(exp: string) {
   return result;
 }
 
-export default formatElExp;
+export default formatExp;

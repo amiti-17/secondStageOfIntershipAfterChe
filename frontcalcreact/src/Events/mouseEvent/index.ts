@@ -3,11 +3,12 @@ import calcControlFunc from "../../config/public/calcControlFunc";
 
 export default function mouseEvent(
   e: React.MouseEvent<HTMLInputElement, MouseEvent>, 
-  { inputValue, setInputValue, setInputPosition, setShouldUpdateHistory }: {
+  { inputValue, setInputValue, setInputPosition, setShouldUpdateHistory, setErrorMessage }: {
     inputValue: string, 
     setInputValue: React.Dispatch<React.SetStateAction<string>>,
     setInputPosition: React.Dispatch<React.SetStateAction<number>>
     setShouldUpdateHistory: React.Dispatch<React.SetStateAction<boolean>>,
+    setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
   }
 ) {
  
@@ -20,7 +21,7 @@ export default function mouseEvent(
       myInput.clearOneSymbol({ inputValue, setInputValue, setInputPosition });
       break;
     case calcControlFunc.equal.display?.value:
-      myInput.calculate({ inputValue, setInputValue, setInputPosition, setShouldUpdateHistory })
+      myInput.calculate({ inputValue, setInputValue, setInputPosition, setShouldUpdateHistory, setErrorMessage })
       break;
     default:
       myInput.addValue({ inputValue, setInputValue, setInputPosition }, (e.target as HTMLButtonElement).value)

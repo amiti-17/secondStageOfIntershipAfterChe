@@ -7,7 +7,10 @@ import GeneralContext from "@/Context";
 
 export default function CalculatorInput() {
 
-  const { setShouldUpdateHistory } = useContext(GeneralContext);
+  const { 
+    setShouldUpdateHistory,
+    setErrorMessage
+  } = useContext(GeneralContext);
   
   const {
     inputValue, setInputValue,
@@ -28,7 +31,12 @@ export default function CalculatorInput() {
       className={style.calcInput}
       type="text" 
       value={inputValue}
-      onKeyDown={(e) => keyBoardEvent(e, { inputValue, setInputValue, setInputPosition, setShouldUpdateHistory})}
+      onKeyDown={(e) => keyBoardEvent(e, { 
+        inputValue, setInputValue, 
+        setInputPosition, 
+        setShouldUpdateHistory, 
+        setErrorMessage
+      })}
       onChange={(e) => {}}
     />
   )

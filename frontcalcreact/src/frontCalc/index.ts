@@ -1,17 +1,25 @@
 import numbers from "@/config/system/constants/numbers";
-import ResDataType from "./ResDataType";
+import ResDataType from "../config/Types/ResDataType";
 import fetchData from "@/Functions/fetchFunctions/fetchData";
 import checkersInput from "@/Components/AppWrapper/Components/CalculatorWrapper/Components/Calculator/Components/CalculatorInput/checkersInput";
+import CustomError from "@/config/Errors";
+import errorMsg from "@/config/Errors/errorMsg";
 
-export default async function calculate({inputValue, setInputValue, setInputPosition, setShouldUpdateHistory}: {
+export default async function calculate({
+  inputValue, setInputValue, 
+  setInputPosition, 
+  setShouldUpdateHistory,
+  setErrorMessage
+}: {
   inputValue: string, 
   setInputValue: React.Dispatch<React.SetStateAction<string>>,
   setInputPosition: React.Dispatch<React.SetStateAction<number>>,
   setShouldUpdateHistory: React.Dispatch<React.SetStateAction<boolean>>,
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>,
 }) {
 
   let isInputChecked;
-  let calculatedData: ResDataType = {result: numbers.zero.str};
+  let calculatedDataOrErrorMsg: ResDataType | string = {result: numbers.zero.str};
 
   isInputChecked = checkersInput(inputValue);
   
@@ -19,15 +27,23 @@ export default async function calculate({inputValue, setInputValue, setInputPosi
     exp: inputValue,
   }
 
-  if (isInputChecked) calculatedData = await fetchData(reqBody);
+  if (isInputChecked) calculatedDataOrErrorMsg = await fetchData(reqBody);
 
-  console.warn(calculatedData);
-  if (calculatedData.result === undefined) {
+  console.warn(calculatedDataOrErrorMsg);
+  // if (calculatedData.result === undefined) {
+  //   setInputValue(numbers.zero.str);
+  //   return;
+  // }
+
+  if (typeof calculatedDataOrErrorMsg === "string") {
+    setErrorMessage(calculatedDataOrErrorMsg);
+    setShouldUpdateHistory(true);
     setInputValue(numbers.zero.str);
-    return;
+    setInputPosition(numbers.zero.str.length);
+    return
   }
 
   setShouldUpdateHistory(true);
-  setInputValue(calculatedData.result);
-  setInputPosition(calculatedData.result.length);
+  setInputValue(calculatedDataOrErrorMsg.result);
+  setInputPosition(calculatedDataOrErrorMsg.result.length);
 }

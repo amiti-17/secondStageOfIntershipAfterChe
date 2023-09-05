@@ -4,7 +4,7 @@ import generalUrls from "@/config/system/fetchConfig/generalUrls";
 import myHeaders from "@/config/system/fetchConfig/myHeaders"
 import methods from "@/config/system/fetchConfig/methods";
 
-async function fetchData(args: {[key: string]: string}) {
+async function fetchData(args: {[key: string]: string}): Promise<ResDataType | string> {
 
   const headers = new Headers();
   const body = {

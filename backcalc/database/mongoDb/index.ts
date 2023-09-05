@@ -13,10 +13,13 @@ class MongoDb implements RawDateBaseType {
     this.CalcModel = CalcModel as unknown as mongoose.Model<HistoryType>; // Problem in types...
   };
   create = async (data: HistoryType): Promise<HistoryType> => {
+    delete data._id;
+    delete data.created_at;
+    delete data.updated_at;
     const newData = new this.CalcModel(data);
-    const savedValue = await newData.save(); // how I can spot that some going wrong?
+    const savedValue = await newData.save();
 
-    console.log(`db: Data was write: ${data.expression}, ${data.calculated}`);
+    console.log(`db: Data was write: `, savedValue);
 
     return savedValue;
   };

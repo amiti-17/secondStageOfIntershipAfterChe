@@ -19,6 +19,7 @@ const constants: {
   doubleMinus: new Constants('--'),
   escapedSpace: new Constants('\\s'),
   number: new Constants('number'),
+  infinity: new Constants('Infinity'),
 };
 
 export default constants;

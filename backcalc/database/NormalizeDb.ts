@@ -21,9 +21,10 @@ export default class NormalizeDb {
     this.create = rawDataBase.create;
     // this.countAll = rawDataBase.countAll;
     this.list = async function(offset: number, limit: number) {
+      const length = await rawDataBase.countAll();
       const returnedData: PaginationAnswerType = {
         history: await rawDataBase.list(offset, limit),
-        length: await rawDataBase.countAll(),
+        length: length >= 15 ? 15 : length,
       }
       return returnedData;
     }; rawDataBase.list;

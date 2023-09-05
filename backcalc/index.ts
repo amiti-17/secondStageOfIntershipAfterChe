@@ -19,6 +19,7 @@ import calcHistoryAllRoutes from "./router/calcHistoryAllRoutes.js";
 import chooseDbAPI from "./database/chooseDbAPI.js";
 import configDB from "./configDB/index.js";
 import dbAPI from "./database/dbAPI.js";
+import mongoose from "mongoose";
 
 chooseDbAPI(configDB.mode);
 
@@ -30,21 +31,33 @@ async function test() {
 //     })
 //     console.log("0", resp);
 //   }
+
+  // if (dbAPI.rawDataBase.CalcModel) {
+  //   const CalcModel = dbAPI.rawDataBase.CalcModel;
+  //   const resp = await CalcModel.find();
+  //   resp.forEach(async el => {
+  //     delete el.created_at;
+  //     // el._id = new mongoose.Types.ObjectId();
+  //     (await new CalcModel(el).save())
+  //   })
+  //   resp?._id = 
+  //   console.log("0", resp);
+  // }
     
-    // const resp1 = await dbAPI.rawDataBase.pool?.query("UPDATE mycalcexp SET calculated=calcexp WHERE calcexp IS NOT NULL");
-    // const resp3 = await dbAPI.rawDataBase.create({expression: "9+9", calculated: "18"});
-    // const resp2 = await dbAPI.dataBase.listAll();
-    // console.log("2", resp2);
-    // console.log("1", resp1);
-    // console.log("3", resp3);
+  // const resp1 = await dbAPI.dataBase.delete({expression: "cos(2(1+(2*6)-3))"});
+  // const resp2 = await dbAPI.dataBase.listAll();
+  // const resp3 = await dbAPI.rawDataBase.create({expression: "7+7", calculated: "14"});
+  // console.log("1", resp1)
+  // console.log("2", resp2);
+  // console.log("3", resp3);
 }
-    setTimeout(() => test(), 1000)
+  setTimeout(() => test(), 1000);
 
 try {
-    // test()
-    // console.log("try", );
+  // test()
+  // console.log("try", );
 } catch (error) {
-    console.log(error);
+  console.log(error);
 }
 
 
@@ -56,9 +69,9 @@ buildCommonConfig();
 const PORT = process.env.PORT || defaultConf.port;
 
 const corsOptions = {
-    origin: "*",
-    credentials: true, //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
+  origin: "*",
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
@@ -81,20 +94,21 @@ app.use(calcHistoryAllRoutes);
 app.use(failRequest);
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    if (err instanceof CustomError) {
-        failResponse(res, err.message);
-        return;
-    }
-    if (err instanceof ValidationError) {
-        failResponse(res, err.message, err.httpCode);
-        return;
-    }
+  if (err instanceof CustomError) {
+    console.log("got Custom Error")
+    failResponse(res, err.message);
+    return;
+  }
+  if (err instanceof ValidationError) {
+    failResponse(res, err.message, err.httpCode);
+    return;
+  }
 
-    res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
+  res.status(HttpCodes.INTERNAL_SERVER_ERROR).json({ message: err.message });
 });
 
 app.listen(PORT, () => {
-    console.log(`Server was run on port ${PORT} ...`);
+  console.log(`Server was run on port ${PORT} ...`);
 });
 
 // my backapp)

@@ -1,5 +1,5 @@
 import regExpStr from "../../configCommon/system/regExp";
-import parseElExp from "./parseElementaryExp";
+import parseElementaryExp from "./parseElementaryExp";
 import formatElExp from "../workWithInput";
 import CustomError from "../../configCommon/Errors";
 import errorMsg from "../../configCommon/Errors/errorMsg";
@@ -14,7 +14,7 @@ function parseToSubExp(exp: string) {
   let currentMatch = currentExpression.match(expInBracketsRegExp);
   while (currentMatch) {
     if (currentMatch.groups?.elExp === undefined) throw new CustomError(errorMsg.currentValueIsUndefined);
-    const replacement = parseElExp(currentMatch.groups?.elExp);
+    const replacement = parseElementaryExp(currentMatch.groups?.elExp);
     if (currentMatch.groups?.extendedOperator) {
       currentExpression = currentExpression.replace(currentMatch.groups.elExp, replacement);
       currentExpression = parseSingleOperands(currentExpression);
@@ -28,7 +28,7 @@ function parseToSubExp(exp: string) {
   if (new RegExp(regExpStr.roundBrackets, flags.global).test(currentExpression)) {
     throw new CustomError(errorMsg.noPairRoundBrackets);
   }
-  return parseElExp(currentExpression);
+  return parseElementaryExp(currentExpression);
 }
 
 export default parseToSubExp;
